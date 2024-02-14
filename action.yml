@@ -69,8 +69,6 @@ runs:
       uses: tj-actions/changed-files@v42
       with:
         skip_initial_fetch: true
-        base_sha: b819efdaf583d4318fd39d90971671e4a80944c6
-        sha: ${{github.event.pull_request.head.sha}}
         path: ${{ inputs.path }}
         files: ${{ inputs.file_extensions }}
         files_ignore_from_source_file: ${{ inputs.ignore_path }}
