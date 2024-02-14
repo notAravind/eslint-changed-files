@@ -13,11 +13,11 @@ inputs:
   config_path:
     description: "[ESlint](https://eslint.org/) [configuration file](https://eslint.org/docs/user-guide/configuring/). Optionally omit this input for Mono repositories."
     required: false
-    default: ''
+    default: ""
   ignore_path:
     description: "[ESlint](https://eslint.org/) [ignore file](https://eslint.org/docs/user-guide/configuring/ignoring-code)"
     required: false
-    default: ''
+    default: ""
   file_extensions:
     description: "List of file extensions to watch for changes and run [ESlint](https://eslint.org/) against."
     required: false
@@ -26,7 +26,7 @@ inputs:
   extra_args:
     description: "Extra arguments passed to [ESlint](https://eslint.org/docs/user-guide/command-line-interface)"
     required: false
-    default: ''
+    default: ""
   skip_annotations:
     description: "Skip running reviewdog i.e don't add any annotations."
     required: false
@@ -34,31 +34,31 @@ inputs:
   level:
     description: "Report level for reviewdog (info,warning,error)"
     required: false
-    default: 'error'
+    default: "error"
   reporter:
     description: |
       [Reporter](https://github.com/reviewdog/reviewdog#reporters) of reviewdog command
       (github-check, github-pr-review).
       github-pr-review can use Markdown and add a link to rule page in reviewdog reports.
     required: false
-    default: 'github-pr-review'
+    default: "github-pr-review"
   filter_mode:
     description: |
       [Filter mode](https://github.com/reviewdog/reviewdog#filter-mode) for the reviewdog command
       (added, diff_context, file, nofilter).
     required: false
-    default: 'added'
+    default: "added"
   fail_on_error:
     description: "Exit code for reviewdog when errors are found."
     required: false
-    default: 'true'
+    default: "true"
   path:
-   description: "Relative path under GITHUB_WORKSPACE to the repository"
-   required: false
-   default: '.'
+    description: "Relative path under GITHUB_WORKSPACE to the repository"
+    required: false
+    default: "."
 
 runs:
-  using: 'composite'
+  using: "composite"
   steps:
     - uses: reviewdog/action-setup@v1
       if: inputs.skip_annotations == 'false'
@@ -68,6 +68,7 @@ runs:
       id: changed-files
       uses: tj-actions/changed-files@v42
       with:
+        skip_initial_fetch: true
         path: ${{ inputs.path }}
         files: ${{ inputs.file_extensions }}
         files_ignore_from_source_file: ${{ inputs.ignore_path }}
