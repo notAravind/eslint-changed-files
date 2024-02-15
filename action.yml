@@ -66,7 +66,7 @@ runs:
         reviewdog_version: v0.14.2
     - name: Get changed files
       id: changed-files
-      uses: notAravind/changed-files@b6701ddfccf5620a4e0b69ada417d72685e5a45d
+      uses: notAravind/changed-files@1a725aed1b2c4211fd7b3618d1727f694068a550
       with:
         skip_initial_fetch: true
         path: ${{ inputs.path }}
